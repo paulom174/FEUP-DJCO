@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [HideInInspector] public bool isFacingRight = true;
+
     [Header("Character Properties")]
     public float jumpForce = 20f;
     public int allowedJumps = 1;
     public float jumpResetTimer = 0.1f;
-    public float acceleration = 30f;
-    public float maxSpeed = 7f;
-    public float maxSpeedWhileJump = 5f;
-    [Range(0, 1)] public float drag = 0.9f;
+    public float acceleration = 50f;
+    public float maxSpeed = 15f;
+    [Range(0, 1)] public float drag = 0.99f;
+    [Range(0, 1)] public float dragWhileJump = 0.9f;
     public LayerMask groundLayer;
     public float skinWidth = 0.01f;
 
@@ -29,7 +31,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rayLength = transform.localScale.y * 0.5f + skinWidth;
+        rayLength = transform.localScale.y * 0.6f + skinWidth;
         jumpCounter = allowedJumps;
     }
 
@@ -54,10 +56,19 @@ public class Movement : MonoBehaviour
         }
         Debug.DrawRay(transform.position, Vector3.down * rayLength, c);
 
-        if(Input.GetKeyDown(KeyCode.Space) && jumpCounter > 0) {
+        if((Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.UpArrow))) && jumpCounter > 0) {
             jump = true;
             jumpCounter--;
             jumpTimerCounter = Time.time;
+        }
+
+        if (move < 0) {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+            isFacingRight = false;
+        }
+        else if (move > 0) {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            isFacingRight = true;
         }
 
     }
@@ -74,7 +85,7 @@ public class Movement : MonoBehaviour
         }
 
         if(ground == false) {
-            temp.x = Mathf.Clamp(temp.x, -maxSpeedWhileJump, maxSpeedWhileJump);
+            temp.x *= dragWhileJump;
         }
 
         if(jump) {
