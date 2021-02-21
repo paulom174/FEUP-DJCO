@@ -20,8 +20,10 @@ public class Movement : MonoBehaviour
 
     [Header("Runtime Variables")]
     [SerializeField] private bool jump = false;
-    [SerializeField] private bool ground = false;
-    [SerializeField] private float move;
+    public bool ground = false;
+    //[SerializeField] private bool ground = false;
+    public float move;
+    //[SerializeField] private float move;
     [SerializeField] private int jumpCounter;
     [SerializeField] private float jumpTimerCounter;
     private Rigidbody2D rb;
@@ -31,7 +33,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rayLength = transform.localScale.y * 0.6f + skinWidth;
+        rayLength = transform.localScale.y * 3.2f + skinWidth;//Todo: change 0.6 to another value
         jumpCounter = allowedJumps;
     }
 
