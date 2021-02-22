@@ -65,11 +65,11 @@ public class Movement : MonoBehaviour
         }
 
         if (move < 0) {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            transform.localScale = new Vector3(-0.5f, 0.5f, 1f);
             isFacingRight = false;
         }
         else if (move > 0) {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = new Vector3(0.5f, 0.5f, 1f);
             isFacingRight = true;
         }
 
