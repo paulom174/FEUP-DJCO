@@ -1569,7 +1569,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 4.405802, y: 1.1412048}
+  m_Offset: {x: 4.4058, y: -0.8537915}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1580,7 +1580,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 84.94034, y: 16.942192}
+  m_Size: {x: 84.94034, y: 12.9522}
   m_EdgeRadius: 0
 --- !u!66 &413084676
 CompositeCollider2D:
@@ -1605,16 +1605,16 @@ CompositeCollider2D:
     - - X: 468759387
         Y: -73298912
       - X: 468759387
-        Y: 96123008
+        Y: 56223088
       - X: -380643680
-        Y: 96122715
+        Y: 56222795
       - X: -380643387
         Y: -73298912
   m_CompositePaths:
     m_Paths:
     - - {x: 46.87591, y: -7.329891}
-      - {x: 46.87591, y: 9.612301}
-      - {x: -38.06437, y: 9.612243}
+      - {x: 46.87591, y: 5.6223087}
+      - {x: -38.06437, y: 5.6222506}
       - {x: -38.064312, y: -7.329891}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
@@ -4075,7 +4075,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4099,7 +4099,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.068455, y: 5.970966, z: -10}
+  m_LocalPosition: {x: -17.53334, y: 1.9709657, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13957,7 +13957,7 @@ MonoBehaviour:
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.6
+  m_ScreenY: 0.52
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.5
   m_DeadZoneHeight: 0.4
@@ -13966,7 +13966,7 @@ MonoBehaviour:
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: 0.00000029802322
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0
@@ -14419,7 +14419,7 @@ MonoBehaviour:
   m_Follow: {fileID: 134320576}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 8
+    OrthographicSize: 4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -14440,7 +14440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516940826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.27, y: 2.9300008, z: -10}
+  m_LocalPosition: {x: -21.27, y: 1.4900001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 855332493}
