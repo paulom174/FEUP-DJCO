@@ -87,11 +87,11 @@ public class Movement : MonoBehaviour
     void OnCollisionStay2D(Collision2D col) 
     {
         int nContacts = col.GetContacts(contacts);
-        debugPoints.Clear();
+        //debugPoints.Clear();
         for (int i = 0; i < nContacts; i++) {
-            debugPoints.Add(contacts[i].point);
-            Debug.Log(i);
-            Debug.Log(contacts[i].normal);
+            //Points.Add(contacts[i].point);
+            //Debug.Log(i);
+            //Debug.Log(contacts[i].normal);
             if(contacts[i].normal == Vector2.up) {
                 if(jumpTimerCounter + jumpResetTimer < Time.time) {
                     jumpCounter = allowedJumps;
