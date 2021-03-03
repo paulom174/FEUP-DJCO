@@ -42,6 +42,27 @@ public class Movement : MonoBehaviour
     {
         move = Input.GetAxis("Horizontal");
 
+        RaycastHit2D centralHit = Physics2D.Raycast(transform.position, Vector2.down, rayLength, groundLayer);
+        RaycastHit2D leftHit = Physics2D.Raycast(transform.position - new Vector3(0.6f, 0, 0), Vector2.down, rayLength, groundLayer);
+        RaycastHit2D rightHit = Physics2D.Raycast(transform.position + new Vector3(0.6f, 0, 0), Vector2.down, rayLength, groundLayer);
+
+        Color c = Color.red;
+
+        if(centralHit.collider != null || leftHit.collider != null || rightHit.collider != null) {
+            c = Color.blue;
+            ground = true;
+            if(jumpTimerCounter + jumpResetTimer < Time.time) {
+                jumpCounter = allowedJumps;
+            }
+        }
+        else {
+            ground = false;
+        }
+
+        Debug.DrawRay(transform.position, Vector3.down * rayLength, c);
+        Debug.DrawRay(transform.position - new Vector3(0.5f, 0, 0), Vector3.down * rayLength, c);
+        Debug.DrawRay(transform.position + new Vector3(0.5f, 0, 0), Vector3.down * rayLength, c);
+
         if((Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.UpArrow))) && jumpCounter > 0) {
             jump = true;
             jumpCounter--;
@@ -62,7 +83,7 @@ public class Movement : MonoBehaviour
     void FixedUpdate() {
 
         float velHorizontal = move * acceleration;
-        rb.velocity += Vector2.right * velHorizontal * Time.fixedDeltaTime;
+        rb.velocity += Vector2.right * velHorizontal * Time.fixedDeltaTime * 1.5f;
         Vector2 temp = rb.velocity;
         temp.x = Mathf.Clamp(temp.x, -maxSpeed, maxSpeed);
 
@@ -80,34 +101,5 @@ public class Movement : MonoBehaviour
         }
 
         rb.velocity = temp;
-    }
-
-    ContactPoint2D[] contacts = new ContactPoint2D[32];
-    List <Vector2> debugPoints = new List<Vector2>();
-    void OnCollisionStay2D(Collision2D col) 
-    {
-        int nContacts = col.GetContacts(contacts);
-        //debugPoints.Clear();
-        for (int i = 0; i < nContacts; i++) {
-            //Points.Add(contacts[i].point);
-            //Debug.Log(i);
-            //Debug.Log(contacts[i].normal);
-            if(contacts[i].normal == Vector2.up) {
-                if(jumpTimerCounter + jumpResetTimer < Time.time) {
-                    jumpCounter = allowedJumps;
-                }
-                ground = true;
-                return;
-            }
-        }
-        ground = false;
-    }
-
-    void OnDrawGizmos() {
-        foreach (Vector2 item in debugPoints)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(item, 0.5f);
-        }
     }
 }
