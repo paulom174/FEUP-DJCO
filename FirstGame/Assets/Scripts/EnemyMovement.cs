@@ -11,6 +11,8 @@ public class EnemyMovement : MonoBehaviour
     RaycastHit2D hitObstacles;
     bool isFacingRight = true;
 
+    Player player;
+
 
     // Update is called once per frame
     void Update()
@@ -46,10 +48,11 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collison)
     {
-       //if (collison.gameObject.CompareTag("Player")){
-          
-       //}
-       //     gameObject.transform.localScale = new Vector3(transform.localScale.x*0.8f, transform.localScale.y*0.8f, 1f);
-       // Destroy(gameObject);
+       if (collison.gameObject.CompareTag("Player")){
+           player = collison.gameObject.GetComponent<Player>();
+           player.health--;
+       }
+
+
     }
 }

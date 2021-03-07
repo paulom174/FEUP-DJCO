@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour {
     public float bulletDamage = 10f;
 
     public Rigidbody2D bullet_rb;
+    Enemy enemy;
 
     private void FixedUpdate()
     {
@@ -17,8 +18,13 @@ public class Bullet : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collison)
     {
-        // Debug.Log("collide");
-        Destroy(gameObject);
+       if (collison.gameObject.tag == "Enemy"){
+           enemy = collison.gameObject.GetComponent<Enemy>();
+           enemy.health--;
+       }
+
+       Destroy(gameObject);
+
     }
 
 }
