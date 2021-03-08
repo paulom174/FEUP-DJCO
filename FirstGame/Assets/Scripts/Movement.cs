@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rayLength = transform.localScale.y * 3.2f + skinWidth;//Todo: change 0.6 to another value
+        rayLength = transform.localScale.y * 0.5f + skinWidth;
         jumpCounter = allowedJumps;
     }
 
@@ -42,9 +42,9 @@ public class Movement : MonoBehaviour
     {
         move = Input.GetAxis("Horizontal");
 
-        RaycastHit2D centralHit = Physics2D.Raycast(transform.position, Vector2.down, rayLength, groundLayer);
-        RaycastHit2D leftHit = Physics2D.Raycast(transform.position - new Vector3(0.6f, 0, 0), Vector2.down, rayLength, groundLayer);
-        RaycastHit2D rightHit = Physics2D.Raycast(transform.position + new Vector3(0.6f, 0, 0), Vector2.down, rayLength, groundLayer);
+        RaycastHit2D centralHit = Physics2D.Raycast(transform.position - new Vector3(0, 1.4f, 0), Vector2.down, rayLength, groundLayer);
+        RaycastHit2D leftHit = Physics2D.Raycast(transform.position - new Vector3(0.6f, 1.4f, 0), Vector2.down, rayLength, groundLayer);
+        RaycastHit2D rightHit = Physics2D.Raycast(transform.position + new Vector3(0.6f, -1.4f, 0), Vector2.down, rayLength, groundLayer);
 
         Color c = Color.red;
 
@@ -59,9 +59,9 @@ public class Movement : MonoBehaviour
             ground = false;
         }
 
-        Debug.DrawRay(transform.position, Vector3.down * rayLength, c);
-        Debug.DrawRay(transform.position - new Vector3(0.5f, 0, 0), Vector3.down * rayLength, c);
-        Debug.DrawRay(transform.position + new Vector3(0.5f, 0, 0), Vector3.down * rayLength, c);
+        Debug.DrawRay(transform.position - new Vector3(0, 1.4f, 0), Vector3.down * rayLength, c);
+        Debug.DrawRay(transform.position - new Vector3(0.5f, 1.4f, 0), Vector3.down * rayLength, c);
+        Debug.DrawRay(transform.position + new Vector3(0.5f, -1.4f, 0), Vector3.down * rayLength, c);
 
         if((Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.UpArrow))) && jumpCounter > 0) {
             jump = true;

@@ -21,6 +21,6 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Debug.Log(ammo);
+        //Debug.Log(ammo);
     }
 }

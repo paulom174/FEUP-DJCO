@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class OrderLayer : MonoBehaviour
 {
-
     private TilemapRenderer rend;
     public Rigidbody2D player_rb;
 
@@ -21,8 +20,5 @@ public class OrderLayer : MonoBehaviour
         }else{
             rend.sortingOrder = -1;//behind player
         }
-      
     }
-
-  
 }
