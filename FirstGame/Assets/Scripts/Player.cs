@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public int health;
     public int ammo;
+    public menu game_over; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(health <= 0) {
-            Destroy(gameObject);
+            //put death animation and disable movement from input instead of Destroy(gameObject);
+            game_over.gameObject.SetActive(true);
         }
 
         //Debug.Log(ammo);
