@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int health;
+    public float health;
     public int ammo;
     public menu game_over; 
 
     // Start is called before the first frame update
     void Start()
     {
-        health = 1;
+        health = 100;
         ammo = 10;
 
     }
@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
             game_over.gameObject.SetActive(true);
         }
 
-        //Debug.Log(ammo);
+        Debug.Log(health);
+    }
+
+    public void damageTaken() {
+        health = health - 20f * Time.deltaTime;
     }
 }

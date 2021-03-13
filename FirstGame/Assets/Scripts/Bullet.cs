@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour {
     {
        if (collison.gameObject.tag == "Enemy"){
            enemy = collison.gameObject.GetComponent<Enemy>();
-           enemy.health--;
+           enemy.damageTaken();
        }
 
        Destroy(gameObject);

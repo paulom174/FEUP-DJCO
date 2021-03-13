@@ -45,14 +45,4 @@ public class EnemyMovement : MonoBehaviour
         }
             
     }
-
-    private void OnCollisionEnter2D(Collision2D collison)
-    {
-       if (collison.gameObject.CompareTag("Player")){
-           player = collison.gameObject.GetComponent<Player>();
-           player.health--;
-       }
-
-
-    }
 }
