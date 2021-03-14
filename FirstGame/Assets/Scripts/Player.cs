@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public float health;
     public int ammo;
+    public int masks;
     public menu game_over; 
 
     // Start is called before the first frame update
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     {
         health = 100;
         ammo = 10;
-
+        masks = 10;
     }
 
     // Update is called once per frame

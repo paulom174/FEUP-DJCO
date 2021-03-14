@@ -8,11 +8,17 @@ public class Enemy : MonoBehaviour
     Transform cone;
     Vector3 targetScale;
 
+    SpriteRenderer mask;
+
+    bool hasMask = false;
+
     void Start()
     {
         sickLevel = 100;
         cone = transform.Find("sicknessCone");
         targetScale = cone.localScale;
+        mask = transform.Find("maskPivot").GetComponentInChildren<SpriteRenderer>();
+        mask.enabled = false;
     }
 
 
@@ -36,7 +42,20 @@ public class Enemy : MonoBehaviour
         // cone.localScale = new Vector3(sickLevel/100f, sickLevel/200f);
 
         targetScale = new Vector3(sickLevel/100f, sickLevel/200f);
+    }
 
+    public void placeMask() {
+        if (hasMask) 
+            return;
+        
+        targetScale = new Vector3(0, 0);
+        mask.enabled = true;
+        cone.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        hasMask = true;
+        runAway();
+    }
 
+    void runAway() {
+        return;
     }
 }

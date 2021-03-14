@@ -29,6 +29,8 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private float rayLength;
 
+    RaycastHit2D playerHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +79,22 @@ public class Movement : MonoBehaviour
             transform.localScale = new Vector3(0.5f, 0.5f, 1f);
             isFacingRight = true;
         }
+
+        if(isFacingRight) {
+            playerHit = Physics2D.Raycast(transform.position, Vector2.right, 1.4f, groundLayer);
+            Debug.DrawRay(transform.position, Vector3.right * 1.4f, c);
+            
+        }
+        else {
+            playerHit = Physics2D.Raycast(transform.position, Vector2.left, 1.4f, groundLayer);
+            Debug.DrawRay(transform.position, Vector3.left * 1.4f, c);
+        }
+
+        if(playerHit.collider.CompareTag("Enemy") && Input.GetKeyDown(KeyCode.C)) {
+            Enemy enemy = playerHit.collider.gameObject.GetComponent<Enemy>();
+            enemy.placeMask();
+        }
+
 
     }
 
