@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Power Up
+  - Heart
+  - Potion
+  - Mask
   layers:
   - Default
   - TransparentFX

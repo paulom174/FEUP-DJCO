@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpTimerCounter;
     private Rigidbody2D rb;
     private float rayLength;
+    Player p;
 
     RaycastHit2D playerHit;
 
@@ -37,6 +38,7 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rayLength = transform.localScale.y * 0.5f + skinWidth;
         jumpCounter = allowedJumps;
+        p = gameObject.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -90,9 +92,10 @@ public class Movement : MonoBehaviour
             Debug.DrawRay(transform.position, Vector3.left * 1.4f, c);
         }
 
-        if(playerHit.collider.CompareTag("Enemy") && Input.GetKeyDown(KeyCode.C)) {
+        if(playerHit.collider != null && playerHit.collider.CompareTag("Enemy") && Input.GetKeyDown(KeyCode.C) && p.canMask()) {
             Enemy enemy = playerHit.collider.gameObject.GetComponent<Enemy>();
             enemy.placeMask();
+            p.maskUp();
         }
 
 

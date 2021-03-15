@@ -10,8 +10,16 @@ public class PickUp : MonoBehaviour
         player = gameObject.GetComponent<Player>();
     }
     void OnTriggerEnter2D(Collider2D collider) {
-        if(collider.gameObject.tag == "Power Up") {
-            player.ammo = player.ammo+ 10;
+        if(collider.gameObject.tag == "Potion") {
+            player.pickUpPotion();
+            Destroy(collider.gameObject);
+        }
+        else if(collider.gameObject.tag == "Heart") {
+            player.pickUpHeart();
+            Destroy(collider.gameObject);
+        }
+        else if(collider.gameObject.tag == "Mask") {
+            player.pickUpMask();
             Destroy(collider.gameObject);
         }
     }

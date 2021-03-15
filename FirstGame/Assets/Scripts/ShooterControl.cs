@@ -10,15 +10,18 @@ public class ShooterControl : MonoBehaviour
 
     float timeUntilFire;
     Movement pm;
+    Player p;
 
     private void Start()
     {
         pm = gameObject.GetComponent<Movement>();
+        p = gameObject.GetComponent<Player>();
+
     }
  
     private void Update()
     {
-        if ((Input.GetMouseButtonDown(0) || (Input.GetKeyDown(KeyCode.X))) && timeUntilFire < Time.time)
+        if ((Input.GetMouseButtonDown(0) || (Input.GetKeyDown(KeyCode.X))) && timeUntilFire < Time.time && p.canShoot())
         {
             Shoot();
             timeUntilFire = Time.time + fireRate;
@@ -29,5 +32,6 @@ public class ShooterControl : MonoBehaviour
     {
         float angle = pm.isFacingRight ? 0f : 180f;
         Instantiate(bulletPrefab, firingPoint_t.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
+        p.ammoShot();
     }
 }

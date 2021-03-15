@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         health = 100;
-        ammo = 10;
+        ammo = 100;
         masks = 10;
     }
 
@@ -25,10 +25,46 @@ public class Player : MonoBehaviour
             game_over.gameObject.SetActive(true);
         }
 
-        Debug.Log(health);
+        Debug.Log("Health " + health);
+        Debug.Log("Ammo " + ammo);
+        Debug.Log("Masks " + masks);
     }
 
     public void damageTaken() {
         health = health - 20f * Time.deltaTime;
+        if(health < 0f)
+            health = 0f;
     }
+    public bool canShoot() {
+        return ammo > 0;
+    }
+    public void ammoShot() {
+        ammo = ammo - 10;
+        if(ammo < 0)
+            ammo = 0;
+    }
+    public bool canMask() {
+        return masks > 0;
+    }
+    public void maskUp() {
+        masks--;
+        if(masks < 0)
+            masks = 0;
+    }
+    public void pickUpPotion() {
+        ammo = ammo + 10;
+        if(ammo > 100)
+            ammo = 100;
+    }
+    public void pickUpHeart() {
+        health = health + 30;
+        if(health > 100)
+            health = 100;
+    }
+    public void pickUpMask() {
+        masks++;
+        if(masks > 10)
+            masks = 10;
+    }
+
 }
