@@ -9,12 +9,16 @@ public class Player : MonoBehaviour
     public int masks;
     public menu game_over; 
 
+    public int score;
+
     // Start is called before the first frame update
     void Start()
     {
         health = 100;
         ammo = 100;
         masks = 10;
+
+        score = 122;
     }
 
     // Update is called once per frame

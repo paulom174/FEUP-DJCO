@@ -9,6 +9,7 @@ public class PlayerValues : MonoBehaviour
     public Transform value_health;
     public Transform value_ammo;
     public TextMeshProUGUI value_masks;
+    public TextMeshProUGUI value_score;
     Player p;
 
     private void Start()
@@ -24,6 +25,7 @@ public class PlayerValues : MonoBehaviour
         value_ammo.localScale = new Vector3(p.ammo/100f, value_ammo.localScale.y, value_ammo.localScale.z);
 
         value_masks.text = "x" + p.masks;
+        value_score.text = "score: " + p.score;
 
         /*Debug.Log("Health " + p.health  + " % " + value_health.localScale.x
         + "  |Ammo " + p.ammo + " % " + value_ammo.localScale.x
