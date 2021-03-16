@@ -24,10 +24,6 @@ public class Player : MonoBehaviour
             //put death animation and disable movement from input instead of Destroy(gameObject);
             game_over.gameObject.SetActive(true);
         }
-
-        Debug.Log("Health " + health);
-        Debug.Log("Ammo " + ammo);
-        Debug.Log("Masks " + masks);
     }
 
     public void damageTaken() {
