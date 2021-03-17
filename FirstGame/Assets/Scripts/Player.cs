@@ -7,9 +7,9 @@ public class Player : MonoBehaviour
     public float health;
     public int ammo;
     public int masks;
-    public menu game_over; 
-
-    public int score;
+    public MenuCalls gameOverCanvas; 
+    public float score;
+    public bool player_dead;
 
     // Start is called before the first frame update
     void Start()
@@ -17,16 +17,21 @@ public class Player : MonoBehaviour
         health = 100;
         ammo = 100;
         masks = 10;
-
         score = 122;
+        player_dead = false;
+        gameObject.GetComponent<ShooterControl>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(health <= 0) {
-            //put death animation and disable movement from input instead of Destroy(gameObject);
-            game_over.gameObject.SetActive(true);
+            //put death animation and disable movement from input 
+            //
+
+            gameOverCanvas.gameObject.SetActive(true);
+            player_dead = true;
+            gameObject.GetComponent<ShooterControl>().enabled = false;
         }
     }
 
