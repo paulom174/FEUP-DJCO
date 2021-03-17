@@ -6,10 +6,12 @@ public class Animation : MonoBehaviour
 {
     public Animator anim;
     Movement pm;
+    Player p;
 
     private void Start()
     {
         pm = gameObject.GetComponent<Movement>();
+        p = gameObject.GetComponent<Player>();
     }
  
     void Update()
@@ -21,6 +23,6 @@ public class Animation : MonoBehaviour
             anim.SetBool("isRunning", false);
         }
         anim.SetBool("isGrounded", pm.ground);
-        //Debug.Log("grounded " + pm.ground);
+        anim.SetBool("isDead", p.player_dead);
     }
 }
