@@ -29,7 +29,7 @@ public class PlayerValues : MonoBehaviour
         value_ammo.localScale = new Vector3(p.ammo/100f, value_ammo.localScale.y, value_ammo.localScale.z);
 
         // update values text
-        value_masks.text = "x" + p.masks;
+        value_masks.text = "x" + p.masks + "/10";
         value_score.text = "score: " + Mathf.Clamp( p.score, 0, 10000).ToString("0.00");
         if(!p.player_dead)
             value_time.text = Mathf.Clamp( Time.time - start_time, 0, 1000).ToString("0.00");
