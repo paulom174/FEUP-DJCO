@@ -16,9 +16,9 @@ public class OrderLayer : MonoBehaviour
     void Update()
     {
         if(player_rb != null && player_rb.transform.localPosition.y > 8.45){
-            rend.sortingOrder = 1;//front player
+            rend.sortingOrder = 2;//front player
         }else{
-            rend.sortingOrder = -1;//behind player
+            rend.sortingOrder = -4;//behind player
         }
     }
 }
