@@ -12,6 +12,7 @@ public class MenuCalls : MonoBehaviour
       Time.timeScale = 1f;
       gameObject.SetActive(false); 
       p.GetComponent<ShooterControl>().enabled = true;
+      p.GetComponent<Movement>().enabled = true;
     }
 
     public void GameOver(){

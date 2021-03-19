@@ -17,21 +17,20 @@ public class Player : MonoBehaviour
         health = 100;
         ammo = 100;
         masks = 10;
-        score = 122;
+        score = 0;
         player_dead = false;
         gameObject.GetComponent<ShooterControl>().enabled = false;
+        gameObject.GetComponent<Movement>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(health <= 0) {
-            //put death animation and disable movement from input 
-            //
-
             gameOverCanvas.gameObject.SetActive(true);
             player_dead = true;
             gameObject.GetComponent<ShooterControl>().enabled = false;
+            gameObject.GetComponent<Movement>().enabled = false;
         }
     }
 
@@ -55,6 +54,7 @@ public class Player : MonoBehaviour
         masks--;
         if(masks < 0)
             masks = 0;
+        score += 20;
     }
     public void pickUpPotion() {
         ammo = ammo + 10;
@@ -70,6 +70,9 @@ public class Player : MonoBehaviour
         masks++;
         if(masks > 10)
             masks = 10;
+    }
+    public void addScore() {
+       score += 5;
     }
 
 }

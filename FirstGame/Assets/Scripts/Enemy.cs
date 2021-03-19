@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     SpriteRenderer mask;
 
     bool hasMask = false;
+    public Player p;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class Enemy : MonoBehaviour
         // cone.localScale = new Vector3(sickLevel/100f, sickLevel/200f);
 
         targetScale = new Vector3(sickLevel/100f, sickLevel/200f);
+        p.addScore();
     }
 
     public void placeMask() {
