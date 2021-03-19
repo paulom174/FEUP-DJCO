@@ -2,24 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class MenuCalls : MonoBehaviour
 {
-    public Player p;  
-
-    public void StartGame(){
-      Time.timeScale = 1f;
+    public void StartGameButton(){
       gameObject.SetActive(false); 
-      p.GetComponent<ShooterControl>().enabled = true;
-      p.GetComponent<Movement>().enabled = true;
+      FindObjectOfType<GameState>().PlayerRevive();
     }
 
-    public void GameOver(){
+    public void RetryGameButton(){
       SceneManager.LoadScene("SampleScene");
     }
 
-    public void QuitGame(){
+    public void QuitGameButton(){
       Application.Quit();
     }
 }   

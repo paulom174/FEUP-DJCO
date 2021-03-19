@@ -7,9 +7,10 @@ public class Player : MonoBehaviour
     public float health;
     public int ammo;
     public int masks;
-    public MenuCalls gameOverCanvas; 
     public float score;
-    public bool player_dead;
+    public bool isDead;
+
+    private GameState gameState;
 
     // Start is called before the first frame update
     void Start()
@@ -18,19 +19,14 @@ public class Player : MonoBehaviour
         ammo = 100;
         masks = 10;
         score = 0;
-        player_dead = false;
-        gameObject.GetComponent<ShooterControl>().enabled = false;
-        gameObject.GetComponent<Movement>().enabled = false;
+        gameState = FindObjectOfType<GameState>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0) {
-            gameOverCanvas.gameObject.SetActive(true);
-            player_dead = true;
-            gameObject.GetComponent<ShooterControl>().enabled = false;
-            gameObject.GetComponent<Movement>().enabled = false;
+        if(health <= 0 && !isDead) {
+            gameState.PlayerDied();
         }
     }
 
@@ -54,7 +50,7 @@ public class Player : MonoBehaviour
         masks--;
         if(masks < 0)
             masks = 0;
-        score += 20;
+        gameState.addScore(20);
     }
     public void pickUpPotion() {
         ammo = ammo + 10;
@@ -70,9 +66,6 @@ public class Player : MonoBehaviour
         masks++;
         if(masks > 10)
             masks = 10;
-    }
-    public void addScore() {
-       score += 5;
     }
 
 }

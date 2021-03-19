@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         // cone.localScale = new Vector3(sickLevel/100f, sickLevel/200f);
 
         targetScale = new Vector3(sickLevel/100f, sickLevel/200f);
-        p.addScore();
+        FindObjectOfType<GameState>().addScore(5);
     }
 
     public void placeMask() {

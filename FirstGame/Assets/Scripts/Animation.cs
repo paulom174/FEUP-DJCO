@@ -23,6 +23,6 @@ public class Animation : MonoBehaviour
             anim.SetBool("isRunning", false);
         }
         anim.SetBool("isGrounded", pm.ground);
-        anim.SetBool("isDead", p.player_dead);
+        anim.SetBool("isDead", p.isDead);
     }
 }
