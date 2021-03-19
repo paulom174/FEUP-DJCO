@@ -19,4 +19,7 @@ public class MenuCalls : MonoBehaviour
       SceneManager.LoadScene("SampleScene");
     }
 
+    public void QuitGame(){
+      Application.Quit();
+    }
 }   

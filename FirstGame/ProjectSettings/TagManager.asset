@@ -8,6 +8,7 @@ TagManager:
   - Heart
   - Potion
   - Mask
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Obstacles
   - Enemy
   - Cones
-  - 
+  - Goal
   - 
   - 
   - 
