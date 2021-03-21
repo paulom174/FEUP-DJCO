@@ -9,6 +9,7 @@ TagManager:
   - Potion
   - Mask
   - Goal
+  - EnemyExit
   layers:
   - Default
   - TransparentFX

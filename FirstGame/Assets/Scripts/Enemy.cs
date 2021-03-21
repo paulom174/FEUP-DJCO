@@ -7,10 +7,17 @@ public class Enemy : MonoBehaviour
     public float sickLevel;
     Transform cone;
     Vector3 targetScale;
+    float startHeight;
+    Color tmp;
 
     SpriteRenderer mask;
 
     bool hasMask = false;
+    bool exitAnim = false;
+    SpriteRenderer sRenderer;
+    Color startColor;
+    public float speedAnimExit = 1f;
+
     public Player p;
 
     void Start()
@@ -20,17 +27,20 @@ public class Enemy : MonoBehaviour
         targetScale = cone.localScale;
         mask = transform.Find("maskPivot").GetComponentInChildren<SpriteRenderer>();
         mask.enabled = false;
+        startHeight = transform.localPosition.y;
+        sRenderer = GetComponent<SpriteRenderer>();
+        
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if(sickLevel <= 0) {
-            Destroy(gameObject);
-        }
         if(Vector3.Distance(cone.localScale, targetScale) > 0.05f) {
             cone.localScale = Vector3.Lerp(cone.localScale, targetScale, Time.deltaTime*2);
+        }
+        if(exitAnim) {
+            sRenderer.color = Color.Lerp(sRenderer.color, new Color(0,0,0,0), Time.deltaTime * speedAnimExit);
         }
     }
 
@@ -54,10 +64,20 @@ public class Enemy : MonoBehaviour
         mask.enabled = true;
         cone.GetComponentInChildren<SpriteRenderer>().enabled = false;
         hasMask = true;
-        runAway();
+        GetComponent<EnemyMovement>().runAway();
     }
 
-    void runAway() {
-        return;
+    public bool HasMask() {
+        return hasMask;
     }
+
+    public void OnTriggerEnter2D(Collider2D collider) {
+        if(collider.gameObject.tag == "EnemyExit" && hasMask) {
+            Destroy(gameObject, 1.3f);
+            exitAnim = true;
+            startColor = sRenderer.color;
+        }
+    }
+
+
 }

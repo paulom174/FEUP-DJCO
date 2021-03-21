@@ -94,8 +94,10 @@ public class Movement : MonoBehaviour
 
         if(playerHit.collider != null && playerHit.collider.CompareTag("Enemy") && Input.GetKeyDown(KeyCode.C) && p.canMask()) {
             Enemy enemy = playerHit.collider.gameObject.GetComponent<Enemy>();
-            enemy.placeMask();
-            p.maskUp();
+            if(!enemy.HasMask()) {
+                enemy.placeMask();
+                p.maskUp();
+            }
         }
 
 
