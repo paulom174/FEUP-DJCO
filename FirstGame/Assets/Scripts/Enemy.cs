@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     bool hasMask = false;
     bool exitAnim = false;
     SpriteRenderer sRenderer;
-    Color startColor;
     public float speedAnimExit = 1f;
 
     public Player p;
@@ -29,7 +28,6 @@ public class Enemy : MonoBehaviour
         mask.enabled = false;
         startHeight = transform.localPosition.y;
         sRenderer = GetComponent<SpriteRenderer>();
-        
     }
 
 
@@ -41,6 +39,7 @@ public class Enemy : MonoBehaviour
         }
         if(exitAnim) {
             sRenderer.color = Color.Lerp(sRenderer.color, new Color(0,0,0,0), Time.deltaTime * speedAnimExit);
+            mask.color = Color.Lerp(mask.color, new Color(0,0,0,0), Time.deltaTime * speedAnimExit);
         }
     }
 
@@ -75,7 +74,6 @@ public class Enemy : MonoBehaviour
         if(collider.gameObject.tag == "EnemyExit" && hasMask) {
             Destroy(gameObject, 1.3f);
             exitAnim = true;
-            startColor = sRenderer.color;
         }
     }
 
