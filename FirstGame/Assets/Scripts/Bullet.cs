@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour {
     public Rigidbody2D bullet_rb;
     Enemy enemy;
 
+    private void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("Bullet");
+    }
+
     private void FixedUpdate()
     {
         bullet_rb.velocity = transform.right * bulletSpeed;

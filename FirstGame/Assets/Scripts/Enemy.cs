@@ -62,6 +62,7 @@ public class Enemy : MonoBehaviour
         targetScale = new Vector3(0, 0);
         mask.enabled = true;
         cone.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        FindObjectOfType<AudioManager>().Play("MaskOn");
         hasMask = true;
         GetComponent<EnemyMovement>().runAway();
     }

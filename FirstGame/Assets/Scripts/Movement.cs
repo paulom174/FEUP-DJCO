@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour
     Player p;
 
     RaycastHit2D playerHit;
+    private AudioManager audio;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class Movement : MonoBehaviour
         rayLength = transform.localScale.y * 0.5f + skinWidth;
         jumpCounter = allowedJumps;
         p = gameObject.GetComponent<Player>();
+        audio = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -46,9 +48,9 @@ public class Movement : MonoBehaviour
     {
         move = Input.GetAxis("Horizontal");
 
-        RaycastHit2D centralHit = Physics2D.Raycast(transform.position - new Vector3(0, 1.4f, 0), Vector2.down, rayLength, groundLayer);
-        RaycastHit2D leftHit = Physics2D.Raycast(transform.position - new Vector3(0.6f, 1.4f, 0), Vector2.down, rayLength, groundLayer);
-        RaycastHit2D rightHit = Physics2D.Raycast(transform.position + new Vector3(0.6f, -1.4f, 0), Vector2.down, rayLength, groundLayer);
+        RaycastHit2D centralHit = Physics2D.Raycast(transform.position - new Vector3(0, 1.1f, 0), Vector2.down, rayLength, groundLayer);
+        RaycastHit2D leftHit = Physics2D.Raycast(transform.position - new Vector3(0.6f, 1.1f, 0), Vector2.down, rayLength, groundLayer);
+        RaycastHit2D rightHit = Physics2D.Raycast(transform.position + new Vector3(0.6f, -1.1f, 0), Vector2.down, rayLength, groundLayer);
 
         Color c = Color.red;
 
@@ -63,22 +65,23 @@ public class Movement : MonoBehaviour
             ground = false;
         }
 
-        Debug.DrawRay(transform.position - new Vector3(0, 1.4f, 0), Vector3.down * rayLength, c);
-        Debug.DrawRay(transform.position - new Vector3(0.5f, 1.4f, 0), Vector3.down * rayLength, c);
-        Debug.DrawRay(transform.position + new Vector3(0.5f, -1.4f, 0), Vector3.down * rayLength, c);
+        Debug.DrawRay(transform.position - new Vector3(0, 1.1f, 0), Vector3.down * rayLength, c);
+        Debug.DrawRay(transform.position - new Vector3(0.5f, 1.1f, 0), Vector3.down * rayLength, c);
+        Debug.DrawRay(transform.position + new Vector3(0.5f, -1.1f, 0), Vector3.down * rayLength, c);
 
         if((Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.UpArrow))) && jumpCounter > 0) {
             jump = true;
             jumpCounter--;
             jumpTimerCounter = Time.time;
+            audio.Play("PlayerJump");
         }
 
         if (move < 0) {
-            transform.localScale = new Vector3(-0.5f, 0.5f, 1f);
+            transform.localScale = new Vector3(-0.45f, 0.4f, 1f);
             isFacingRight = false;
         }
         else if (move > 0) {
-            transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+            transform.localScale = new Vector3(0.45f, 0.4f, 1f);
             isFacingRight = true;
         }
 

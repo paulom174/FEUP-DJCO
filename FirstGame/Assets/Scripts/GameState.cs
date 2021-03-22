@@ -11,6 +11,7 @@ public class GameState : MonoBehaviour
     private Player p;
     private float score;
     private float startTime;
+    private AudioManager audio;
 
     public void Start(){
         // Freeze time: animations and everything affected by time stop, but for example Update() functions in scripts dont are
@@ -27,6 +28,9 @@ public class GameState : MonoBehaviour
         startTime = Time.time;
         score = 0;
 
+        audio = FindObjectOfType<AudioManager>();
+        audio.Play("Ambient");
+
     }
 
     public void PlayerDied(){
@@ -38,6 +42,9 @@ public class GameState : MonoBehaviour
         // Active Game Over menu canvas
         gameOverCanvas.gameObject.SetActive(true);
 
+        audio.Stop("Ambient");
+        audio.Play("GameOver");
+        audio.Play("PlayerDeath");
     }
 
     public void PlayerRevive(){

@@ -9,8 +9,11 @@ public class WinGame : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider) {
 
        if (collider.gameObject.tag == "Goal"){
-           winCanvas.gameObject.SetActive(true);
-           Destroy(gameObject);
+            winCanvas.gameObject.SetActive(true);
+            Destroy(gameObject);
+            AudioManager audio = FindObjectOfType<AudioManager>();
+            //audio.Stop("Ambient");
+            audio.Play("GameWin");
        }
 
        
