@@ -27,7 +27,10 @@ public class Bullet : MonoBehaviour {
            enemy = collison.gameObject.GetComponent<Enemy>();
            enemy.damageTaken();
        }
-
+       if (collison.gameObject.tag == "Plataforms")
+           return;
+     
+       // Debug.Log(collison.gameObject.tag);
        Destroy(gameObject);
 
     }
