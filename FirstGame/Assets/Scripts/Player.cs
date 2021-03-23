@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     {
         health = 100;
         ammo = 100;
-        masks = 10;
+        masks = 1;
         score = 0;
         gameState = FindObjectOfType<GameState>();
     }
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     }
 
     public void damageTaken() {
-        health = health - 20f * Time.deltaTime;
+        health = health - 20f * Time.deltaTime * 2;
         if(health < 0f)
             health = 0f;
     }
@@ -53,17 +53,15 @@ public class Player : MonoBehaviour
         gameState.addScore(20);
     }
     public void pickUpPotion() {
-        ammo = ammo + 10;
+        ammo = ammo + 50;
         if(ammo > 100)
             ammo = 100;
     }
     public void pickUpHeart() {
-        health = health + 30;
-        if(health > 100)
-            health = 100;
+        health = 100;
     }
     public void pickUpMask() {
-        masks++;
+        masks = masks + 4;
         if(masks > 10)
             masks = 10;
     }

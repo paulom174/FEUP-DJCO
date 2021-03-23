@@ -28,7 +28,9 @@ public class SicknessCone : MonoBehaviour
 
         if(collider.gameObject.tag == "Player") {
             Player player = collider.gameObject.GetComponent<Player>();
-            player.damageTaken();
+            if(!gameObject.GetComponentInParent<Enemy>().HasMask())
+                player.damageTaken();
+
             FindObjectOfType<AudioManager>().Play("Sneeze");
         }
     }

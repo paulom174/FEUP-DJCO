@@ -56,9 +56,10 @@ public class Enemy : MonoBehaviour
     }
 
     public void placeMask() {
-        if (hasMask) 
+        if (hasMask || sickLevel > 80) 
             return;
         
+
         targetScale = new Vector3(0, 0);
         mask.enabled = true;
         cone.GetComponentInChildren<SpriteRenderer>().enabled = false;
